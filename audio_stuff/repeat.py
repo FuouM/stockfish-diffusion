@@ -2,7 +2,7 @@ from typing import Iterable, Union
 
 from torch.utils.data import Dataset
 
-from audio_stuff.audio_folder import DATASETS
+from audio_stuff.builder import DATASETS
 
 
 @DATASETS.register_module()

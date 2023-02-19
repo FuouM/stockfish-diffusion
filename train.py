@@ -11,10 +11,10 @@ from pytorch_lightning.loggers import TensorBoardLogger, WandbLogger
 from torch.utils.data import DataLoader
 from scheduler_stuff.scheduler import LR_SCHEUDLERS
 from vocoder import VOCODERS
-from audio_stuff.audio_folder import DATASETS
+from audio_stuff import DATASETS
 from diffsinger import DiffSinger
 from util_stuff.viz import viz_synth_sample
-from util_stuff.repeat import RepeatDataset
+from audio_stuff.repeat import RepeatDataset
 
 class FishDiffusion(pl.LightningModule):
     def __init__(self, config):
@@ -127,6 +127,40 @@ class FishDiffusion(pl.LightningModule):
     def validation_step(self, batch, batch_idx):
         return self._step(batch, batch_idx, mode="valid")
 
+def edit_audioFile(batch_size):
+    
+    template = f"""dataset = dict(
+    train=dict(
+        type="AudioFolderDataset",
+        path="dataset/train",
+        speaker_id=0,
+    ),
+    valid=dict(
+        type="AudioFolderDataset",
+        path="dataset/valid",
+        speaker_id=0,
+    ),
+)
+
+dataloader = dict(
+    train=dict(
+        batch_size={batch_size},
+        shuffle=True,
+        num_workers=2,
+        persistent_workers=True,
+    ),
+    valid=dict(
+        batch_size=2,
+        shuffle=False,
+        num_workers=2,
+        persistent_workers=True,
+    ),
+)
+"""
+    
+    with open('./model/_base_/datasets/audio_folder.py', 'w') as file:
+        file.write(template)
+
 
 if __name__ == "__main__":
     pl.seed_everything(42, workers=True)
@@ -152,11 +186,12 @@ if __name__ == "__main__":
         default=False,
         help="Only train speaker embeddings.",
     )
+    
+    parser.add_argument("--batch_size", type=int, default=12, help="Batchsize (Reduce to avoid CUDA memory error). Default=12")
 
     args = parser.parse_args()
-
+    edit_audioFile(args.batch_size)
     cfg = Config.fromfile(args.config)
-
     model = FishDiffusion(cfg)
 
     # We only load the state_dict of the model, not the optimizer.

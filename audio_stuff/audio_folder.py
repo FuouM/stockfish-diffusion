@@ -8,8 +8,7 @@ from util_stuff.file import list_files
 
 from torch.utils.data import Dataset
 
-from mmengine import Registry
-DATASETS = Registry("datasets")
+from audio_stuff.builder import DATASETS
 
 @DATASETS.register_module()
 class AudioFolderDataset(Dataset):

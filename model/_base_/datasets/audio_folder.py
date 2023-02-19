@@ -13,7 +13,7 @@ dataset = dict(
 
 dataloader = dict(
     train=dict(
-        batch_size=20,
+        batch_size=12,
         shuffle=True,
         num_workers=2,
         persistent_workers=True,
