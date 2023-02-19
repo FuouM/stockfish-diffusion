@@ -17,7 +17,7 @@ trainer = dict(
     callbacks=[
         ModelCheckpoint(
             filename="{epoch}-{step}-{valid_loss:.2f}",
-            every_n_train_steps=10000,
+            every_n_train_steps=1000,
             save_top_k=-1,
         ),
         LearningRateMonitor(logging_interval="step"),
