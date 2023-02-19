@@ -53,6 +53,6 @@ python .\extract_features.py --config "\model\svc_hubert_soft.py" --path "\datas
 
 #### Step 4.2: Train
 ```
-python .\train.py --config "\model\svc_hubert_soft.py"
+python .\train.py --config "stockfish-diffusion\svc_cn_hubert_soft_finetune.py" --pretrained "stockfish-diffusion\cn-hubert-soft-600-singers-pretrained-v1.ckpt" --batch_size 2
 ````
 
