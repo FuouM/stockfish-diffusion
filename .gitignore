@@ -132,3 +132,4 @@ dmypy.json
 *.ckpt
 dataset/train/*
 dataset/valid/*
+output/*
