@@ -1,6 +1,9 @@
 # stockfish-diffusion
 Easier version of fish-diffusion
 
+[English Document](https://github.com/fishaudio/fish-diffusion/blob/main/README.en.md)
+
+[English Colab](https://colab.research.google.com/drive/1MxbO25q2IpJ_ia0CjpMKRKABWUQhruhh)
 ```
 conda create -n neosovit python=3.10
 conda activate neosovit
