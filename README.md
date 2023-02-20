@@ -51,11 +51,10 @@ python .\inference.py --config "stockfish-diffusion\svc_cn_hubert_soft_finetune.
 - Add audio files into above folders (All training data into `train`, 2 or 3 files into `valid`)
 - Run
 ```
-python .\extract_features.py --config "\model\svc_hubert_soft.py" --path "\dataset\train" --clean
+python .\extract_features.py --config "stockfish-diffusion\model\svc_cn_hubert_soft_finetune_crepe.py" --path "\dataset\train" --clean
 ```
 
-#### Step 4.2: Train
+#### Step 4.2: Train (Change batch_size to increase or decrease GPU memory usage)
 ```
-python .\train.py --config "stockfish-diffusion\svc_cn_hubert_soft_finetune.py" --pretrained "stockfish-diffusion\cn-hubert-soft-600-singers-pretrained-v1.ckpt" --batch_size 2
+python .\train.py --config "stockfish-diffusion\model\svc_cn_hubert_soft_finetune.py" --pretrained "stockfish-diffusion\cn-hubert-soft-600-singers-pretrained-v1.ckpt" --batch_size 12
 ````
-

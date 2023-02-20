@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import Union
 
 from loguru import logger
+import os
 
 VIDEO_EXTENSIONS = {
     ".mp4",
@@ -59,7 +60,6 @@ def list_files(
         files = sorted(files)
 
     return files
-
 
 def make_dirs(path: Union[Path, str], clean: bool = False):
     """Make directories.

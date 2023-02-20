@@ -59,7 +59,7 @@ preprocessing = dict(
         gate_size=25,
     ),
     pitch_extractor=dict(
-        type="ParselMouthPitchExtractor",
+        type="CrepePitchExtractor",
     ),
 )
 
